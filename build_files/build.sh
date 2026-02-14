@@ -48,8 +48,9 @@ echo "RELEASE = $RELEASE"
 
 ### Install packages
 dnf5 -y install \
+    obs-studio
+    
     # code-insiders \
     # firefox-pwa \
     # virtio-win \
     # webapp-manager \ 
-    obs-studio
