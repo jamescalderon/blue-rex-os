@@ -51,12 +51,33 @@ rm -f /tmp/firefoxpwa.rpm
 dnf5 -y copr enable refi64/webapp-manager
 
 ### Install packages
+
+# Development Tools
 dnf5 -y install \
-    obs-studio \
     code \
-    code-insiders \
-    webapp-manager \
+    code-insiders
+
+# Media & Recording
+dnf5 -y install \
+    obs-studio
+
+# Web Browsers & Apps
+dnf5 -y install \
     firefox \
+    webapp-manager
+
+# Terminal Utilities
+dnf5 -y install \
+    screen \
+    stow
+
+# Fonts
+dnf5 -y install \
+    jetbrains-mono-fonts \
+    mscore-fonts
+
+# VM/Virtualization Packages
+dnf5 -y install \
     spice-vdagent \
     qemu-guest-agent \
     virtio-win \
@@ -67,7 +88,17 @@ dnf5 -y install \
     virtio-win-guest-tools-iso \
     virtio-win-guest-tools-iso-image \
     virtio-win-guest-tools-iso-image-installer \
-    virtio-win-guest-tools-iso-image-installer-gnome 
+    virtio-win-guest-tools-iso-image-installer-gnome
+
+# X-Plane 12 related packages
+dnf5 -y install \
+    freeglut \
+    openal-soft \
+    libcurl \
+    libcurl-devel \
+    switcheroo-control \
+    gtk3 \
+    libglvnd-glx
 
 
 
