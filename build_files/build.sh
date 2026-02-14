@@ -34,13 +34,13 @@ echo "RELEASE = $RELEASE"
 
 ### Direct Repo Installs
 # - webapp-manager (COPR port from Linux Mint)
-curl -o /etc/yum.repos.d/refi64-webapp-manager-fedora.repo "https://copr.fedorainfracloud.org/coprs/refi64/webapp-manager/repo/fedora-${RELEASE}/refi64-webapp-manager-fedora-${RELEASE}.repo"
+# curl -o /etc/yum.repos.d/refi64-webapp-manager-fedora.repo "https://copr.fedorainfracloud.org/coprs/refi64/webapp-manager/repo/fedora-${RELEASE}/refi64-webapp-manager-fedora-${RELEASE}.repo"
 
 #  - vscode repo
-curl -o /etc/yum.repos.d/vscode.repo "https://packages.microsoft.com/yumrepos/vscode/config.repo"
+# curl -o /etc/yum.repos.d/vscode.repo "https://packages.microsoft.com/yumrepos/vscode/config.repo"
 
 # - virtio-win repo
-curl -o /etc/yum.repos.d/virtio-win.repo "https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo"
+# curl -o /etc/yum.repos.d/virtio-win.repo "https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo"
 
 # - Firefox PWA
 # rpm --import https://packagecloud.io/filips/FirefoxPWA/gpgkey
@@ -48,8 +48,8 @@ curl -o /etc/yum.repos.d/virtio-win.repo "https://fedorapeople.org/groups/virt/v
 
 ### Install packages
 dnf5 -y install \
-    code-insiders \
+    # code-insiders \
     # firefox-pwa \
-    virtio-win \
-    webapp-manager \ 
+    # virtio-win \
+    # webapp-manager \ 
     obs-studio
