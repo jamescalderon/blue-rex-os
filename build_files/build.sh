@@ -56,6 +56,20 @@ dnf5 -y install \
     code \
     code-insiders \
     webapp-manager \
-    virtio-win
+    firefox \
+    spice-vdagent \
+    qemu-guest-agent \
+    virtio-win \
+    virtiofsd \
+    virtio-win-firmware \
+    virtio-win-guest-tools \
+    virtio-win-guest-tools-installer \
+    virtio-win-guest-tools-iso \
+    virtio-win-guest-tools-iso-image \
+    virtio-win-guest-tools-iso-image-installer \
+    virtio-win-guest-tools-iso-image-installer-gnome 
+
+
+
 
     
