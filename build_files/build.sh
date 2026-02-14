@@ -42,22 +42,10 @@ curl -o /etc/yum.repos.d/vscode.repo "https://packages.microsoft.com/yumrepos/vs
 # - virtio-win repo
 curl -o /etc/yum.repos.d/virtio-win.repo "https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo"
 
-# - Firefox PWA
-# rpm --import https://packagecloud.io/filips/FirefoxPWA/gpgkey
-# echo -e "[firefoxpwa]\nname=FirefoxPWA\nmetadata_expire=300\nbaseurl=https://packagecloud.io/filips/FirefoxPWA/rpm_any/rpm_any/\$basearch\ngpgkey=https://packagecloud.io/filips/FirefoxPWA/gpgkey\nrepo_gpgcheck=1\ngpgcheck=0\nenabled=1" | tee /etc/yum.repos.d/firefoxpwa.repo
-
-# Enable the Firefox PWA repository
-tee /etc/yum.repos.d/firefoxpwa.repo > /dev/null <<EOF
-[firefoxpwa]
-name=FirefoxPWA
-metadata_expire=7d
-baseurl=https://packagecloud.io/filips/FirefoxPWA/rpm_any/rpm_any/\$basearch
-gpgkey=https://packagecloud.io/filips/FirefoxPWA/gpgkey
-       https://packagecloud.io/filips/FirefoxPWA/gpgkey/filips-FirefoxPWA-912AD9BE47FEB404.pub.gpg
-repo_gpgcheck=1
-gpgcheck=1
-enabled=1
-EOF
+# - Firefox PWA (direct RPM installation)
+curl -Lo /tmp/firefoxpwa.rpm https://github.com/filips123/PWAsForFirefox/releases/download/v2.18.0/firefoxpwa-2.18.0-1.x86_64.rpm
+rpm -i /tmp/firefoxpwa.rpm
+rm -f /tmp/firefoxpwa.rpm
 
 # Enable the COPR repos:
 dnf5 -y copr enable refi64/webapp-manager
@@ -68,7 +56,6 @@ dnf5 -y install \
     code \
     code-insiders \
     webapp-manager \
-    virtio-win \
-    firefoxpwa
+    virtio-win
 
     
