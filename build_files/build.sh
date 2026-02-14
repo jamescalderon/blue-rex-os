@@ -37,7 +37,7 @@ echo "RELEASE = $RELEASE"
 # curl -o /etc/yum.repos.d/refi64-webapp-manager-fedora.repo "https://copr.fedorainfracloud.org/coprs/refi64/webapp-manager/repo/fedora-${RELEASE}/refi64-webapp-manager-fedora-${RELEASE}.repo"
 
 #  - vscode repo
-# curl -o /etc/yum.repos.d/vscode.repo "https://packages.microsoft.com/yumrepos/vscode/config.repo"
+curl -o /etc/yum.repos.d/vscode.repo "https://packages.microsoft.com/yumrepos/vscode/config.repo"
 
 # - virtio-win repo
 # curl -o /etc/yum.repos.d/virtio-win.repo "https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo"
@@ -48,9 +48,9 @@ echo "RELEASE = $RELEASE"
 
 ### Install packages
 dnf5 -y install \
-    obs-studio
-    
-    # code-insiders \
+    obs-studio \
+    code \
+    code-insiders
     # firefox-pwa \
     # virtio-win \
     # webapp-manager \ 
