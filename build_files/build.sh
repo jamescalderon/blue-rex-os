@@ -59,14 +59,6 @@ gpgcheck=1
 enabled=1
 EOF
 
-
-
-# Import GPG key and update DNF cache
-sudo dnf -q makecache -y --disablerepo="*" --enablerepo="firefoxpwa"
-
-# Install the package
-sudo dnf install firefoxpwa
-
 # Enable the COPR repos:
 dnf5 -y copr enable refi64/webapp-manager
 
