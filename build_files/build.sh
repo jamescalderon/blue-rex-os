@@ -40,17 +40,43 @@ echo "RELEASE = $RELEASE"
 curl -o /etc/yum.repos.d/vscode.repo "https://packages.microsoft.com/yumrepos/vscode/config.repo"
 
 # - virtio-win repo
-# curl -o /etc/yum.repos.d/virtio-win.repo "https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo"
+curl -o /etc/yum.repos.d/virtio-win.repo "https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo"
 
 # - Firefox PWA
 # rpm --import https://packagecloud.io/filips/FirefoxPWA/gpgkey
 # echo -e "[firefoxpwa]\nname=FirefoxPWA\nmetadata_expire=300\nbaseurl=https://packagecloud.io/filips/FirefoxPWA/rpm_any/rpm_any/\$basearch\ngpgkey=https://packagecloud.io/filips/FirefoxPWA/gpgkey\nrepo_gpgcheck=1\ngpgcheck=0\nenabled=1" | tee /etc/yum.repos.d/firefoxpwa.repo
 
+# Enable the Firefox PWA repository
+tee /etc/yum.repos.d/firefoxpwa.repo > /dev/null <<EOF
+[firefoxpwa]
+name=FirefoxPWA
+metadata_expire=7d
+baseurl=https://packagecloud.io/filips/FirefoxPWA/rpm_any/rpm_any/\$basearch
+gpgkey=https://packagecloud.io/filips/FirefoxPWA/gpgkey
+       https://packagecloud.io/filips/FirefoxPWA/gpgkey/filips-FirefoxPWA-912AD9BE47FEB404.pub.gpg
+repo_gpgcheck=1
+gpgcheck=1
+enabled=1
+EOF
+
+
+
+# Import GPG key and update DNF cache
+sudo dnf -q makecache -y --disablerepo="*" --enablerepo="firefoxpwa"
+
+# Install the package
+sudo dnf install firefoxpwa
+
+# Enable the COPR repos:
+dnf5 -y copr enable refi64/webapp-manager
+
 ### Install packages
 dnf5 -y install \
     obs-studio \
     code \
-    code-insiders
-    # firefox-pwa \
-    # virtio-win \
-    # webapp-manager \ 
+    code-insiders \
+    webapp-manager \
+    virtio-win \
+    firefoxpwa
+
+    
