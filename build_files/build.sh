@@ -93,6 +93,11 @@ dnf5 -y install \
     gtk3 \
     libglvnd-glx
 
+# fingerprinting packages
+dnf5 -y install \
+    fprintd \
+    libfprint    
+
 
 
 
