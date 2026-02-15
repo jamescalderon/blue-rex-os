@@ -81,14 +81,8 @@ dnf5 -y install \
     spice-vdagent \
     qemu-guest-agent \
     virtio-win \
-    virtiofsd \
-    virtio-win-firmware \
-    virtio-win-guest-tools \
-    virtio-win-guest-tools-installer \
-    virtio-win-guest-tools-iso \
-    virtio-win-guest-tools-iso-image \
-    virtio-win-guest-tools-iso-image-installer \
-    virtio-win-guest-tools-iso-image-installer-gnome
+    virtiofsd
+
 
 # X-Plane 12 related packages
 dnf5 -y install \
