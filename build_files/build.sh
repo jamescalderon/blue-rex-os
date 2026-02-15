@@ -32,9 +32,7 @@ echo "ARCHITECTURE = $ARCH"
 RELEASE="$(rpm -E %fedora)"
 echo "RELEASE = $RELEASE"
 
-### Direct Repo Installs
-# - webapp-manager (COPR port from Linux Mint)
-# curl -o /etc/yum.repos.d/refi64-webapp-manager-fedora.repo "https://copr.fedorainfracloud.org/coprs/refi64/webapp-manager/repo/fedora-${RELEASE}/refi64-webapp-manager-fedora-${RELEASE}.repo"
+### DIRECT REPO INSTALLS
 
 #  - vscode repo
 curl -o /etc/yum.repos.d/vscode.repo "https://packages.microsoft.com/yumrepos/vscode/config.repo"
@@ -42,12 +40,7 @@ curl -o /etc/yum.repos.d/vscode.repo "https://packages.microsoft.com/yumrepos/vs
 # - virtio-win repo
 curl -o /etc/yum.repos.d/virtio-win.repo "https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo"
 
-# - Firefox PWA (direct RPM installation)
-curl -Lo /tmp/firefoxpwa.rpm https://github.com/filips123/PWAsForFirefox/releases/download/v2.18.0/firefoxpwa-2.18.0-1.x86_64.rpm
-rpm -i /tmp/firefoxpwa.rpm
-rm -f /tmp/firefoxpwa.rpm
-
-# Enable the COPR repos:
+# ENABLE THE COPR REPOS:
 dnf5 -y copr enable refi64/webapp-manager
 
 ### Install packages
@@ -64,7 +57,13 @@ dnf5 -y install \
 # Web Browsers & Apps
 dnf5 -y install \
     firefox \
-    webapp-manager
+    webapp-manager \
+    chromium
+
+# Firefox PWA (not available in repos, so we install it directly from the RPM)
+curl -Lo /tmp/firefoxpwa.rpm https://github.com/filips123/PWAsForFirefox/releases/download/v2.18.0/firefoxpwa-2.18.0-1.x86_64.rpm
+dnf5 -y install /tmp/firefoxpwa.rpm
+# rm -f /tmp/firefoxpwa.rpm
 
 # Terminal Utilities
 dnf5 -y install \
