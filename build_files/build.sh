@@ -95,18 +95,38 @@ dnf5 -y install \
     libglvnd-glx
 
 # Install elgato4k-linux from release tarball
-dnf5 -y install \
-    libusb1
+# dnf5 -y install \
+#     libusb1
 
-curl -Lo /tmp/elgato4k-linux.tar.gz https://github.com/13bm/elgato4k-linux/releases/download/v0.2.2/elgato4k-linux-v0.2.2-x86_64-linux.tar.gz
-tar -xzf /tmp/elgato4k-linux.tar.gz -C /tmp
-# cp /tmp/elgato4k-linux /usr/local/bin/
+# curl -Lo /tmp/elgato4k-linux.tar.gz https://github.com/13bm/elgato4k-linux/releases/download/v0.2.2/elgato4k-linux-v0.2.2-x86_64-linux.tar.gz
+# tar -xzf /tmp/elgato4k-linux.tar.gz -C /tmp
+# # cp /tmp/elgato4k-linux /usr/local/bin/
 
-cp /tmp/elgato4k-linux /usr/local/bin/elgato4k-linux
+# cp /tmp/elgato4k-linux /usr/local/bin/elgato4k-linux
 
+# chmod +x /usr/bin/elgato4k-linux
+
+# rm -f /tmp/elgato4k-linux.tar.gz /tmp/elgato4k-linux /tmp/LOW_CONFIDENCE_COMMANDS.md /tmp/README.md
+
+# 1. Install build dependencies (Rust and libusb)
+dnf5 install -y cargo libusb1-devel
+
+# 2. Clone and compile
+git clone https://github.com/13bm/elgato4k-linux.git
+cd elgato4k-linux
+cargo build --release
+
+# 3. Install to the immutable system path
+# We use /usr/bin because /usr/local/bin is not persistent in image builds
+cp target/release/elgato4k-linux /usr/bin/elgato4k-linux
 chmod +x /usr/bin/elgato4k-linux
 
-rm -f /tmp/elgato4k-linux.tar.gz /tmp/elgato4k-linux /tmp/LOW_CONFIDENCE_COMMANDS.md /tmp/README.md
+# 4. Cleanup (Optional: keeps the image size small)
+cd ..
+rm -rf elgato4k-linux
+dnf5 remove -y cargo
+dnf5 clean all
+
 
 
 
