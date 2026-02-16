@@ -100,7 +100,12 @@ dnf5 -y install \
 
 curl -Lo /tmp/elgato4k-linux.tar.gz https://github.com/13bm/elgato4k-linux/releases/download/v0.2.2/elgato4k-linux-v0.2.2-x86_64-linux.tar.gz
 tar -xzf /tmp/elgato4k-linux.tar.gz -C /tmp
-cp /tmp/elgato4k-linux /usr/local/bin/
+# cp /tmp/elgato4k-linux /usr/local/bin/
+
+cp /tmp/elgato4k-linux /usr/bin/elgato4k-linux
+
+chmod +x /usr/bin/elgato4k-linux
+
 rm -f /tmp/elgato4k-linux.tar.gz /tmp/elgato4k-linux /tmp/LOW_CONFIDENCE_COMMANDS.md /tmp/README.md
 
 
