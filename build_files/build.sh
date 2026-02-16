@@ -57,6 +57,7 @@ dnf5 -y install \
 # Web Browsers & Apps
 dnf5 -y install \
     firefox \
+    thunderbird \
     webapp-manager \
     chromium
 
@@ -93,10 +94,7 @@ dnf5 -y install \
     gtk3 \
     libglvnd-glx
 
-# fingerprinting packages
-dnf5 -y install \
-    fprintd \
-    libfprint    
+
 
 
 
