@@ -94,7 +94,19 @@ dnf5 -y install \
     gtk3 \
     libglvnd-glx
 
+# Build and install elgato4k-linux
+dnf5 -y install \
+    libusb1-devel 
 
+(
+    cd /tmp
+    git clone https://github.com/13bm/elgato4k-linux.git
+    cd elgato4k-linux
+    cargo build --release
+    cp target/release/elgato4k-linux /usr/local/bin/
+    cd /tmp
+    rm -rf elgato4k-linux
+)
 
 
 
