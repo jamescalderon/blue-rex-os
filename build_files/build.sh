@@ -102,7 +102,7 @@ curl -Lo /tmp/elgato4k-linux.tar.gz https://github.com/13bm/elgato4k-linux/relea
 tar -xzf /tmp/elgato4k-linux.tar.gz -C /tmp
 # cp /tmp/elgato4k-linux /usr/local/bin/
 
-cp /tmp/elgato4k-linux /usr/bin/elgato4k-linux
+cp /tmp/elgato4k-linux /usr/local/bin/elgato4k-linux
 
 chmod +x /usr/bin/elgato4k-linux
 
