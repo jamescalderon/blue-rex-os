@@ -102,8 +102,8 @@ curl -Lo /tmp/elgato4k-linux.tar.gz https://github.com/13bm/elgato4k-linux/relea
 tar -xzf /tmp/elgato4k-linux.tar.gz -C /tmp
 
 # Install to /usr/bin (not /usr/local/bin) for atomic/immutable systems
-cp /tmp/elgato4k-linux /usr/bin/elgato4k-linux
-chmod +x /usr/bin/elgato4k-linux
+cp /tmp/elgato4k-linux /usr/bin/elgato4k
+chmod +x /usr/bin/elgato4k
 
 # Cleanup
 rm -f /tmp/elgato4k-linux.tar.gz /tmp/elgato4k-linux /tmp/LOW_CONFIDENCE_COMMANDS.md /tmp/README.md
