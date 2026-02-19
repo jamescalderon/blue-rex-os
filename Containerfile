@@ -8,7 +8,7 @@ COPY build_files /
 ## Other possible base images include:
 # FROM ghcr.io/ublue-os/bazzite:latest
 # FROM ghcr.io/ublue-os/bluefin-dx-nvidia:stable
-FROM ghcr.io/ublue-os/bluefin-dx-nvidia:latest
+FROM ghcr.io/ublue-os/bluefin-dx-nvidia-open:latest
 # 
 # ... and so on, here are more base images
 # Universal Blue Images: https://github.com/orgs/ublue-os/packages
