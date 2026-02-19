@@ -29,6 +29,14 @@ FROM ghcr.io/ublue-os/bluefin-dx-nvidia:stable
 ## make modifications desired in your image and install packages by modifying the build.sh script
 ## the following RUN directive does all the things required to run "build.sh" as recommended.
 
+# for X-Plane 12, copy over udev rules
+COPY flightSim/51-Xsaitekpanels.rules /usr/lib/udev/rules.d 
+COPY flightSim/52-HoneycombBravo.rules /usr/lib/udev/rules.d
+COPY flightSim/53-saitek-devices.rules /usr/lib/udev/rules.d
+
+# Non-Root Users to Bind to Port 80 (needed for postman)
+RUN echo 'net.ipv4.ip_unprivileged_port_start=80' >> /etc/sysctl.conf
+
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \

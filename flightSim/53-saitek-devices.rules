@@ -1,0 +1,2 @@
+#Saitek Pro Flight Rudder Pedals
+KERNEL=="event*", SUBSYSTEMS=="input", ATTRS{id/product}=="0763", ATTRS{id/vendor}=="06a3", MODE="0666", TAG+="uaccess"
