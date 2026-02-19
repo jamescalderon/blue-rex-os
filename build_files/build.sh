@@ -58,6 +58,8 @@ set -ouex pipefail
 
 # Media & Recording
     dnf5 -y install \
+        ffmpeg-full \
+        libva-utils \
         obs-studio
 
 # Web Browsers & Apps
