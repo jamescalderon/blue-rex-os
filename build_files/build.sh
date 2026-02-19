@@ -58,9 +58,10 @@ set -ouex pipefail
 
 # Media & Recording
     dnf5 -y install \
-        ffmpeg-full \
+        ffmpeg-free \
         libva-utils \
-        obs-studio
+        obs-studio \
+        obs-studio-plugin-pwvideo
 
 # Web Browsers & Apps
     dnf5 -y install \
