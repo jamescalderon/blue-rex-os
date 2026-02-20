@@ -40,6 +40,10 @@ set -ouex pipefail
 # virtio-win repo
     curl -o /etc/yum.repos.d/virtio-win.repo "https://fedorapeople.org/groups/virt/virtio-win/virtio-win.repo"
 
+# NVIDIA Container Toolkit
+    curl -s -L https://nvidia.github.io/libnvidia-container/stable/rpm/nvidia-container-toolkit.repo | \
+    tee /etc/yum.repos.d/nvidia-container-toolkit.repo    
+
 # ENABLE THE COPR REPOS:
     dnf5 -y copr enable refi64/webapp-manager
 
@@ -113,6 +117,22 @@ set -ouex pipefail
 
     cp /tmp/elgato4k-linux /usr/bin/elgato4k
     chmod +x /usr/bin/elgato4k
+
+# NVIDIA Container Toolkit
+    dnf5 -y install nvidia-container-toolkit 
+
+# Configure Docker to Use NVIDIA Runtime
+tee /etc/docker/daemon.json <<EOF
+{
+    "default-runtime": "nvidia",
+    "runtimes": {
+        "nvidia": {
+            "path": "nvidia-container-runtime",
+            "runtimeArgs": []
+        }
+    }
+}
+EOF   
 
 # Final Cleanup
     rm -f /tmp/firefoxpwa.rpm
