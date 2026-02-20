@@ -70,7 +70,8 @@ set -ouex pipefail
         ffmpeg-free \
         libva-utils \
         obs-studio \
-        obs-studio-plugin-pwvideo
+        obs-studio-plugin-pwvideo \
+        simplescreenrecorder
 
 # Web Browsers & Apps
     dnf5 -y install \
