@@ -60,6 +60,21 @@ set -ouex pipefail
         stow \
         gparted
 
+# Cockpit and System Tools
+    dnf5 -y install \
+        cockpit \
+        cockpit-podman \
+        cockpit-machines \
+        cockpit-storaged \
+        cockpit-networkmanager \
+        cockpit-system \
+        cockpit-selinux \
+        cockpit-ostree \
+        cockpit-logs \
+        cockpit-kdump \
+        cockpit-sosreport
+        # cockpit-packagekit \
+
 # Development Tools
     dnf5 -y install \
         code \
@@ -70,8 +85,7 @@ set -ouex pipefail
         ffmpeg-free \
         libva-utils \
         obs-studio \
-        obs-studio-plugin-pwvideo \
-        simplescreenrecorder
+        obs-studio-plugin-pwvideo 
 
 # Web Browsers & Apps
     dnf5 -y install \
