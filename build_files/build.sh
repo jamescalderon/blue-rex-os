@@ -32,6 +32,11 @@ set -ouex pipefail
     RELEASE="$(rpm -E %fedora)"
     echo "RELEASE = $RELEASE"
 
+# Function to safely install packages with --skip-unavailable flag
+safeInstall() {
+    dnf5 -y install --skip-unavailable "$@"
+}
+
 ### DIRECT REPO INSTALLS
 
 # RPM Fusion repos (free and nonfree)
@@ -55,13 +60,13 @@ set -ouex pipefail
 ### Install Packages
 
 # Misc Utilities
-    dnf5 -y install \
+    safeInstall \
         screen \
         stow \
         gparted
 
 # Cockpit and System Tools
-    dnf5 -y install \
+    safeInstall \
         cockpit \
         cockpit-podman \
         cockpit-machines \
@@ -76,19 +81,19 @@ set -ouex pipefail
         # cockpit-packagekit \
 
 # Development Tools
-    dnf5 -y install \
+    safeInstall \
         code \
         code-insiders
 
 # Media & Recording
-    dnf5 -y install \
+    safeInstall \
         ffmpeg-free \
         libva-utils \
         obs-studio \
         obs-studio-plugin-pwvideo 
 
 # Web Browsers & Apps
-    dnf5 -y install \
+    safeInstall \
         firefox \
         thunderbird \
         webapp-manager \
@@ -99,19 +104,19 @@ set -ouex pipefail
     dnf5 -y install /tmp/firefoxpwa.rpm
 
 # Fonts
-    dnf5 -y install \
+    safeInstall \
         jetbrains-mono-fonts \
         mscore-fonts
 
 # VM/Virtualization Packages
-    dnf5 -y install \
+    safeInstall \
         spice-vdagent \
         qemu-guest-agent \
         virtio-win \
         virtiofsd
 
 # X-Plane 12 related packages
-    dnf5 -y install \
+    safeInstall \
         freeglut \
         openal-soft \
         libcurl \
@@ -121,7 +126,7 @@ set -ouex pipefail
         libglvnd-glx
 
 # Install elgato4k-linux from release tarball -  Using pre-built binary
-    dnf5 -y install libusb1
+    safeInstall libusb1
 
     # Get the latest release URL from GitHub API
     ELGATO_LATEST_URL=$(curl -s https://api.github.com/repos/13bm/elgato4k-linux/releases/latest | grep "browser_download_url.*x86_64-linux.tar.gz" | cut -d '"' -f 4)
@@ -131,7 +136,7 @@ set -ouex pipefail
     # curl -Lo /tmp/elgato4k-linux.tar.gz https://github.com/13bm/elgato4k-linux/releases/download/v0.2.2/elgato4k-linux-v0.2.2-x86_64-linux.tar.gz
     tar -xzf /tmp/elgato4k-linux.tar.gz -C /tmp
 
-    # Install to /usr/bin (not /usr/local/bin) for atomic/immutable systems - using both file names due do doc changes
+    # Direct binary installation to /usr/bin (not /usr/local/bin) for atomic/immutable systems - using both file names due do doc changes
     cp /tmp/elgato4k-linux /usr/bin/elgato4k-linux
     chmod +x /usr/bin/elgato4k-linux
 
