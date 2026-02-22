@@ -63,7 +63,8 @@ safeInstall() {
     safeInstall \
         screen \
         stow \
-        gparted
+        gparted \
+        gnome-shell-extension-manager
 
 # Cockpit and System Tools
     safeInstall \
