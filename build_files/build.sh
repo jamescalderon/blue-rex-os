@@ -98,8 +98,7 @@ safeInstall() {
         firefox \
         thunderbird \
         webapp-manager \
-        chromium \
-        spotify-client
+        chromium 
 
 # Firefox PWA (not available in repos, so we install it directly from the RPM)
     curl -Lo /tmp/firefoxpwa.rpm https://github.com/filips123/PWAsForFirefox/releases/download/v2.18.0/firefoxpwa-2.18.0-1.x86_64.rpm
